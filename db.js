@@ -10,4 +10,6 @@ mongoose.connect(`mongodb://${username}:${password}@${host}:${port}/${database}`
   useNewUrlParser: true
 })
 
-module.exports = {}
+const db = mongoose.connection
+
+module.exports = db
