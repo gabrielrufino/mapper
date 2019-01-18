@@ -12,4 +12,12 @@ mongoose.connect(`mongodb://${username}:${password}@${host}:${port}/${database}`
 
 const db = mongoose.connection
 
+db.on('error', () => {
+  console.error('connection error')
+})
+
+db.once('open', () => {
+  require('./models/User')
+})
+
 module.exports = db
