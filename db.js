@@ -18,6 +18,7 @@ db.on('error', () => {
 
 db.once('open', () => {
   require('./models/User')
+  require('./models/Target')
 })
 
 module.exports = db
