@@ -19,7 +19,13 @@ const auth = async (req, res) => {
     return res.status(400).json({ error: 'Invalid password' })
   }
 
-  const token = jwt.sign({ id: user._id }, 'hashqualquer', {
+  const payload = {
+    id: user._id
+  }
+
+  const secret = 'hashqualquer'
+
+  const token = jwt.sign(payload, secret, {
     expiresIn: 86400
   })
 
