@@ -13,7 +13,6 @@ const auth = async (req, res) => {
     res.status(404).json({ error: 'User not found' })
   }
 
-
   const correctPassword = await bcrypt.compare(password, user.password)
   if (!correctPassword) {
     return res.status(400).json({ error: 'Invalid password' })
