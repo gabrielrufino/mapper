@@ -1,5 +1,7 @@
 const mongoose = require('mongoose')
-const User     = mongoose.model('User')
+const bcrypt   = require('bcryptjs')
+
+const User = mongoose.model('User')
 
 const auth = async (req, res) => {
   const { username, password } = req.body
@@ -10,7 +12,13 @@ const auth = async (req, res) => {
     res.status(404).json({ error: 'User not found' })
   }
 
-  res.json({ route: 'login' })
+
+  const correctPassword = await bcrypt.compare(password, user.password)
+  if (!correctPassword) {
+    return res.status(400).json({ error: 'Invalid password' })
+  }
+
+  res.json(user)
 }
 
 module.exports = auth
