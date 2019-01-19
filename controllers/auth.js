@@ -1,5 +1,6 @@
 const mongoose = require('mongoose')
 const bcrypt   = require('bcryptjs')
+const jwt      = require('jsonwebtoken')
 
 const User = mongoose.model('User')
 
@@ -18,7 +19,11 @@ const auth = async (req, res) => {
     return res.status(400).json({ error: 'Invalid password' })
   }
 
-  res.json(user)
+  const token = jwt.sign({ id: user._id }, 'hashqualquer', {
+    expiresIn: 86400
+  })
+
+  res.json({ user, token })
 }
 
 module.exports = auth
