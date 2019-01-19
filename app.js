@@ -8,7 +8,11 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 
 // Routes
-app.use('/users', require('./routes/users'))
+const usersRouter = require('./routes/users')
+const authRouter  = require('./routes/auth')
+
+app.use('/users', usersRouter)
+app.use('/auth', authRouter)
 app.use('/', require('./controllers/index'))
 
 const port = process.env.PORT || 3000
