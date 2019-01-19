@@ -1,6 +1,13 @@
-const express = require('express')
-const app     = express()
+const express    = require('express')
+const bodyParser = require('body-parser')
 
+const app = express()
+
+// Middlewares
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: true }))
+
+// Routes
 app.use('/users', require('./routes/users'))
 app.use('/', require('./controllers/index'))
 
