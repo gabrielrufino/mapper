@@ -1,6 +1,10 @@
 const dotenv = require('dotenv')
 dotenv.config()
 
-const app = require('./app')
 const db  = require('./db')
+const app = require('./app')
 
+module.exports = {
+  db,
+  app
+}
