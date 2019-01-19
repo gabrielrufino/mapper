@@ -3,9 +3,9 @@ const User     = mongoose.model('User')
 
 const create = (req, res) => {
   const user = new User({
-    name: req.name,
-    username: req.username,
-    password: req.password
+    name: req.body.name,
+    username: req.body.username,
+    password: req.body.password
   })
 
   user.save((err, user) => {
