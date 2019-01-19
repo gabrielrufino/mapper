@@ -29,7 +29,7 @@ const auth = async (req, res) => {
     expiresIn: 86400
   })
 
-  res.json({ user, token })
+  res.json({ token })
 }
 
 module.exports = auth
