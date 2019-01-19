@@ -7,7 +7,7 @@ const auth = async (req, res) => {
   const user = await User.findOne({ username }).select('+password')
 
   if (!user) {
-    res.status(404).json({ error: 'User not found.' })
+    res.status(404).json({ error: 'User not found' })
   }
 
   res.json({ route: 'login' })
