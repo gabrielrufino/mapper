@@ -1,5 +1,13 @@
-const del = (req, res) => {
-  res.send('delete')
+const mongoose = require('mongoose')
+const Target   = mongoose.model('Target')
+
+const del = async (req, res) => {
+  const target = Target.findOne({ _id: req.params.id })
+  if (!target) {
+    return res.status(404).json({ error: 'Target not found' })
+  }
+
+  return res.json(target)
 }
 
 module.exports = del
